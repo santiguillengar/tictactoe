@@ -2,26 +2,32 @@ const players = ['X','O'];
 let play = 0;
 
 function cellClicked(id) {
-  document.getElementById(id).innerHTML = players[play];
+  // check selected cell is empty
+  console.log(id);
+  if (document.getElementById(id).innerHTML === "") {
+    document.getElementById(id).innerHTML = '<h1>'+players[play]+'</h1>';
   
-  if(play === 0) {
-    play = 1;
-  } else {
-    play  = 0;
-  }
-
-  // update info panel to next plater
-  document.getElementById('info').innerHTML = 'Next Player: ' + players[play];
-
-  let check = checkBoard();
-  if (check !== false) {
-    if (check === 'DRAW!') {
-      document.getElementById('info').innerHTML = 'DRAW!';
+    if(play === 0) {
+      play = 1;
     } else {
-      document.getElementById('info').innerHTML = 'WINNER:  ' + check + '!';
+      play  = 0;
     }
-  }
   
+    // update info panel to next plater
+    document.getElementById('info').innerHTML = 'Next Player: ' + players[play];
+  
+    let check = checkBoard();
+    if (check !== false) {
+      if (check === 'DRAW!') {
+        document.getElementById('info').innerHTML = 'DRAW!';
+      } else {
+        document.getElementById('info').innerHTML = 'WINNER:  ' + check + '!';
+      }
+    }
+  
+  } else {
+    document.getElementById('info').innerHTML = 'Cell has been taken! Try another cell.<br>Player: ' + players[play];
+  }
 }
 
 
