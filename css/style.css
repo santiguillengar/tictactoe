@@ -21,12 +21,18 @@ body {
     width: 60vw;
     height: 60vw;
   }
+  .grid-cell {
+    font-size: medium;
+  }
 }
+
 .grid-cell {
   background-color: #FFFFFF;
   align-items: center;
   justify-content: center;
   border: none;
+  font-size: xx-large;
+  font-weight: bolder;
 }
 
 .grid-cell:hover {
@@ -46,11 +52,6 @@ h2 {
 #reset {
   margin: auto;
   text-align: center;
-}
-
-.grid-cell {
-  font-size: xx-large;
-  font-weight: bolder;
 }
 
 #reset-button {
