@@ -16,9 +16,14 @@ body {
   margin: auto;
 }
 
+@media (max-width: 740px) {
+  .grid-container{
+    width: 60vw;
+    height: 60vw;
+  }
+}
 .grid-cell {
   background-color: #FFFFFF;
-  /* display: flex; */
   align-items: center;
   justify-content: center;
   border: none;
