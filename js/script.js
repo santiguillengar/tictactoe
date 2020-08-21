@@ -1,11 +1,13 @@
 const players = ['X','O'];
 let play = 0;
 
+const cellIds = ['cell1', 'cell2', 'cell3', 'cell4', 'cell5', 'cell6', 'cell7', 'cell8', 'cell9'];
+
 function cellClicked(id) {
   // check selected cell is empty
   console.log(id);
-  if (document.getElementById(id).innerHTML === "") {
-    document.getElementById(id).innerHTML = '<h1>'+players[play]+'</h1>';
+  if (document.getElementById(id).innerHTML === ' ') {
+    document.getElementById(id).innerHTML = players[play];
   
     if(play === 0) {
       play = 1;
@@ -18,11 +20,7 @@ function cellClicked(id) {
   
     let check = checkBoard();
     if (check !== false) {
-      if (check === 'DRAW!') {
-        document.getElementById('info').innerHTML = 'DRAW!';
-      } else {
-        document.getElementById('info').innerHTML = 'WINNER:  ' + check + '!';
-      }
+      gameEnd(check);
     }
   
   } else {
@@ -48,7 +46,8 @@ function checkBoard() {
                   [cell1, cell4, cell7], [cell2, cell5, cell8], [cell3, cell6, cell9],
                   [cell1, cell5, cell9], [cell3, cell5, cell7]];
 
-
+  console.log('\ncheckBoard()');
+  console.log(winningLines);
   // check if we have a winner
   let foundWinner = false;
   winningLines.forEach((line) => {
@@ -64,15 +63,52 @@ function checkBoard() {
   let finished = true;
   if (foundWinner === false) {
     winningLines.forEach((line) => {
-      if (line.some(cell => cell === "")) {
+      if (line.some(cell => cell === ' ')) {
         finished = false;
       }
     });
   }
 
   if (finished && foundWinner === false) {
-    foundWinner = "DRAW!"
+    foundWinner = 'DRAW!'
   }
 
   return foundWinner;
 }
+
+function gameEnd(winner) {
+  document.getElementById('reset-button').style.visibility = 'visible';
+
+  cellIds.forEach((cell) => {
+    document.getElementById(cell).disabled = true;
+  })
+
+  if (winner === 'DRAW!') {
+    document.getElementById('info').innerHTML = 'DRAW!';
+    document.body.style.backgroundColor = '#FFFF85';
+  } else {
+    document.getElementById('info').innerHTML = 'WINNER:  ' + winner + '!';
+    document.body.style.backgroundColor = '#9EE493';
+  }
+
+}
+
+
+function resetGame() {
+
+  document.body.style.backgroundColor = '#FFFFFF';
+
+  document.getElementById('heading').innerHTML = 'Tic Tac Toe';
+
+  cellIds.forEach((cell) => {
+    document.getElementById(cell).disabled = false;
+    document.getElementById(cell).innerHTML = ' ';
+  })
+
+  document.getElementById('info').innerHTML = 'Welcome!<br>Player 1: Click a square for your first move!';
+  document.getElementById('reset-button').style.visibility = 'hidden';
+  document.getElementById('reset-button').innerHTML = 'Reset Game';
+
+}
+
+resetGame();
