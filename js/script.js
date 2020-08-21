@@ -1,4 +1,4 @@
-const players = ['X','O'];
+const players = ['❌','⭕️'];
 let play = 0;
 
 const cellIds = ['cell1', 'cell2', 'cell3', 'cell4', 'cell5', 'cell6', 'cell7', 'cell8', 'cell9'];
@@ -84,7 +84,7 @@ function gameEnd(foundWinner, winningLine) {
       document.getElementById(cell).style.backgroundColor = '#FFFF85';
     })
   } else {
-    document.getElementById('info').innerHTML = 'WINNER:  ' + winningLine[0] + '!';
+    document.getElementById('info').innerHTML = 'WINNER:  ' + document.getElementById(winningLine[0]).innerHTML + '!';
     console.log(winningLine);
     // document.body.style.backgroundColor = '#9EE493';
     winningLine.forEach((cell) => {
@@ -104,11 +104,14 @@ function resetGame() {
   cellIds.forEach((cell) => {
     document.getElementById(cell).disabled = false;
     document.getElementById(cell).innerHTML = ' ';
+    document.getElementById(cell).style.backgroundColor = '#FFFFFF'; 
   })
 
   document.getElementById('info').innerHTML = 'Welcome!<br>Player 1: Click a square for your first move!';
   document.getElementById('reset-button').style.visibility = 'hidden';
   document.getElementById('reset-button').innerHTML = 'Reset Game';
+  
+  document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()));
 
 }
 
