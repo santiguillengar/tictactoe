@@ -7,7 +7,7 @@
   <title>Tic Tac Toe</title>
 </head>
 <body>
-  <h1>Tic Tac Toe</h1>
+  <h1 id="heading"></h1>
 
   <div class="grid-container" id="board">
     <button class="grid-cell" id="cell1" onclick="cellClicked(this.id)"></button>
@@ -21,6 +21,11 @@
     <button class="grid-cell" id="cell9" onclick="cellClicked(this.id)"></button>
   </div>
 
-  <h2 id="info">Welcome!<br>Player 1: Click a square for your first move!</h2>
+  <h2 id="info"></h2>
+  <div id="reset"><button id="reset-button" onclick="resetGame()"></button></div>
+
+  <footer>
+    <p><a href="https://sguillen.com">Santi Guillen</a> &copy; <span id="copyright"></span></p>
+  </footer>
   <script type="text/javascript" src="js/script.js"></script>
 </body>
