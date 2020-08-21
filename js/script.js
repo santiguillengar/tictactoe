@@ -111,7 +111,11 @@ function resetGame() {
   document.getElementById('reset-button').style.visibility = 'hidden';
   document.getElementById('reset-button').innerHTML = 'Reset Game';
   
-  document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()));
+  let copyright = document.getElementById('copyright');
+  if (copyright.innerHTML === '') {
+    copyright.appendChild(document.createTextNode(new Date().getFullYear()))
+  }
+  
 
 }
 
